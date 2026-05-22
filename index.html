@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Presentacion del Proyecto</title>
+  <title>Red de Salud Corporativa</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #182033;
@@ -20,6 +21,8 @@
       --coral: #d85f49;
       --gold: #d39b22;
       --green: #217a53;
+      --mint: #e9faf4;
+      --sky: #eef5ff;
     }
 
     * {
@@ -36,15 +39,16 @@
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        linear-gradient(135deg, rgba(15, 139, 141, 0.08), transparent 28%),
-        linear-gradient(315deg, rgba(216, 95, 73, 0.08), transparent 34%),
+        radial-gradient(circle at 12% 12%, rgba(15, 139, 141, 0.16), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(36, 84, 198, 0.14), transparent 24%),
+        linear-gradient(140deg, rgba(217, 245, 237, 0.78), rgba(245, 247, 251, 0.88) 42%, rgba(255, 246, 238, 0.64)),
         var(--soft);
     }
 
     .deck-shell {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 280px minmax(0, 1fr);
+      grid-template-columns: 292px minmax(0, 1fr);
     }
 
     .sidebar {
@@ -52,29 +56,32 @@
       top: 0;
       height: 100vh;
       padding: 32px 24px;
-      border-right: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.86);
-      backdrop-filter: blur(14px);
+      border-right: 1px solid rgba(220, 228, 239, 0.85);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(18px);
+      z-index: 2;
     }
 
     .brand-mark {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       display: grid;
       place-items: center;
       margin-bottom: 18px;
       border-radius: 8px;
       color: #fff;
-      font-weight: 800;
+      font-weight: 900;
+      letter-spacing: 0;
       background: linear-gradient(135deg, var(--teal), var(--blue));
-      box-shadow: 0 16px 30px rgba(36, 84, 198, 0.2);
+      box-shadow: 0 16px 34px rgba(36, 84, 198, 0.22);
     }
 
     .sidebar h1 {
       margin: 0;
-      font-size: 1.15rem;
-      line-height: 1.25;
-      font-weight: 800;
+      font-size: 1.2rem;
+      line-height: 1.22;
+      font-weight: 900;
+      letter-spacing: 0;
     }
 
     .sidebar p {
@@ -96,8 +103,9 @@
       border: 1px solid transparent;
       border-radius: 8px;
       color: var(--ink);
-      font-weight: 700;
+      font-weight: 800;
       background: transparent;
+      transition: transform 180ms ease, color 180ms ease, background 180ms ease, border-color 180ms ease;
     }
 
     .nav-pills .nav-link:hover,
@@ -105,17 +113,19 @@
       color: var(--blue);
       border-color: rgba(36, 84, 198, 0.18);
       background: rgba(36, 84, 198, 0.08);
+      transform: translateX(3px);
     }
 
     .nav-index {
-      width: 26px;
-      height: 26px;
+      width: 27px;
+      height: 27px;
       display: inline-grid;
       place-items: center;
+      flex: 0 0 auto;
       border-radius: 8px;
       color: #fff;
-      font-size: 0.8rem;
-      background: var(--blue);
+      font-size: 0.78rem;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
     }
 
     main {
@@ -124,18 +134,33 @@
     }
 
     .slide {
+      position: relative;
       min-height: calc(100vh - 68px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 54px;
       margin-bottom: 34px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(220, 228, 239, 0.94);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.92);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 255, 0.9)),
+        rgba(255, 255, 255, 0.94);
       box-shadow: 0 24px 80px rgba(24, 32, 51, 0.09);
       overflow: hidden;
       animation: fadeUp 0.7s ease both;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 300px;
+      height: 300px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(15, 139, 141, 0.13), transparent 68%);
+      pointer-events: none;
     }
 
     .slide:last-child {
@@ -148,7 +173,7 @@
       padding: 8px 12px;
       border-radius: 8px;
       font-size: 0.78rem;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 0;
       text-transform: uppercase;
       color: var(--teal);
@@ -156,19 +181,19 @@
     }
 
     .slide-title {
-      max-width: 920px;
+      max-width: 980px;
       margin: 0 0 18px;
-      font-size: clamp(2rem, 4vw, 4.3rem);
-      line-height: 1;
-      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 4.45rem);
+      line-height: 0.98;
+      font-weight: 900;
       letter-spacing: 0;
     }
 
     .lead-text {
-      max-width: 820px;
+      max-width: 870px;
       margin: 0;
       color: var(--muted);
-      font-size: 1.15rem;
+      font-size: 1.16rem;
       line-height: 1.65;
     }
 
@@ -189,9 +214,12 @@
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
 
-    .objective-card:hover {
+    .objective-card:hover,
+    .feature-card:hover,
+    .company-logo:hover,
+    .flow-step:hover {
       transform: translateY(-6px);
-      border-color: rgba(36, 84, 198, 0.25);
+      border-color: rgba(36, 84, 198, 0.24);
       box-shadow: 0 22px 46px rgba(24, 32, 51, 0.12);
     }
 
@@ -203,13 +231,17 @@
       background: var(--accent);
     }
 
-    .objective-card h3 {
+    .objective-card h3,
+    .feature-card h3,
+    .scope-panel h3 {
       margin: 0 0 12px;
       font-size: 1.08rem;
-      font-weight: 800;
+      font-weight: 900;
     }
 
-    .objective-card p {
+    .objective-card p,
+    .feature-card p,
+    .timeline-item p {
       margin: 0;
       color: var(--muted);
       line-height: 1.58;
@@ -228,20 +260,26 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .metric:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 38px rgba(24, 32, 51, 0.09);
     }
 
     .metric strong {
       display: block;
       margin-bottom: 6px;
       color: var(--accent);
-      font-size: 1.8rem;
+      font-size: 2rem;
       line-height: 1;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .metric span {
       color: var(--muted);
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.9rem;
     }
 
@@ -258,12 +296,6 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
-    }
-
-    .scope-panel h3 {
-      margin-bottom: 18px;
-      font-size: 1.2rem;
-      font-weight: 800;
     }
 
     .check-list {
@@ -290,8 +322,8 @@
       place-items: center;
       border-radius: 8px;
       color: #fff;
-      font-size: 0.9rem;
-      font-weight: 800;
+      font-size: 0.82rem;
+      font-weight: 900;
       background: var(--green);
     }
 
@@ -302,7 +334,7 @@
 
     .timeline-item {
       display: grid;
-      grid-template-columns: 90px minmax(0, 1fr);
+      grid-template-columns: 92px minmax(0, 1fr);
       gap: 14px;
       align-items: center;
       padding: 15px;
@@ -317,14 +349,8 @@
       color: #fff;
       text-align: center;
       font-size: 0.82rem;
-      font-weight: 800;
+      font-weight: 900;
       background: var(--accent);
-    }
-
-    .timeline-item p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.45;
     }
 
     .feature-grid {
@@ -343,12 +369,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 42px rgba(24, 32, 51, 0.1);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
 
     .feature-icon {
@@ -359,20 +380,113 @@
       border-radius: 8px;
       color: #fff;
       font-size: 1.35rem;
-      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .company-logo {
+      min-height: 154px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 12px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .logo-mark {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+    }
+
+    .company-logo strong {
+      font-size: 1rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .company-logo span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .flow-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+      margin-top: 38px;
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 170px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -17px;
+      z-index: 1;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(36, 84, 198, 0.18);
+      border-radius: 999px;
+      color: var(--blue);
+      font-weight: 900;
+      background: #fff;
+      transform: translateY(-50%);
+    }
+
+    .flow-number {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 900;
       background: var(--accent);
     }
 
-    .feature-card h3 {
+    .flow-step h3 {
       margin: 0 0 8px;
-      font-size: 1.04rem;
-      font-weight: 800;
+      font-size: 1rem;
+      font-weight: 900;
     }
 
-    .feature-card p {
+    .flow-step p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.56;
+      line-height: 1.48;
+      font-size: 0.92rem;
     }
 
     .footer-note {
@@ -388,9 +502,21 @@
         opacity: 0;
         transform: translateY(20px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .company-grid,
+      .flow-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow-step:not(:last-child)::after {
+        display: none;
       }
     }
 
@@ -407,7 +533,7 @@
 
       .nav-pills {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       main {
@@ -428,7 +554,9 @@
     }
 
     @media (max-width: 576px) {
-      .nav-pills {
+      .nav-pills,
+      .company-grid,
+      .flow-strip {
         grid-template-columns: 1fr;
       }
 
@@ -446,85 +574,93 @@
 <body>
   <div class="deck-shell">
     <aside class="sidebar">
-      <div class="brand-mark">KP</div>
-      <h1>Presentacion tecnica del proyecto</h1>
-      <p>Resumen ejecutivo para comunicar objetivos, alcance y funcionalidades clave.</p>
+      <div class="brand-mark">RS</div>
+      <h1>Red de Salud Corporativa</h1>
+      <p>Prototipo comercial para conectar empresas, clinicas afiliadas y colaboradores.</p>
 
       <nav class="nav nav-pills flex-column">
-        <a class="nav-link active" href="#objetivo"><span class="nav-index">1</span>Objetivo principal</a>
+        <a class="nav-link active" href="#vision"><span class="nav-index">1</span>Vision</a>
         <a class="nav-link" href="#alcance"><span class="nav-index">2</span>Alcance</a>
         <a class="nav-link" href="#funcionalidades"><span class="nav-index">3</span>Funcionalidades</a>
+        <a class="nav-link" href="#empresas"><span class="nav-index">4</span>Empresas</a>
+        <a class="nav-link" href="#experiencia"><span class="nav-index">5</span>Experiencia</a>
       </nav>
     </aside>
 
     <main>
-      <section class="slide" id="objetivo">
-        <div class="eyebrow">01 · Objetivo principal</div>
-        <h2 class="slide-title">Construir una solucion clara, medible y orientada a resultados.</h2>
+      <section class="slide" id="vision">
+        <div class="eyebrow">01 · Vision / objetivo</div>
+        <h2 class="slide-title">Una red que conecta empresas, colaboradores y salud</h2>
         <p class="lead-text">
-          El proyecto busca entregar una plataforma funcional que optimice el proceso actual,
-          reduzca tareas manuales y permita tomar decisiones con informacion confiable.
+          Buscamos construir un ecosistema digital que permita a empresas y colaboradores acceder
+          facilmente a clinicas afiliadas mediante convenios y beneficios corporativos.
         </p>
 
         <div class="cards-grid">
           <article class="objective-card" style="--accent: var(--teal);">
             <div class="card-topline"></div>
-            <h3>Estandarizar procesos</h3>
-            <p>Unificar criterios, pasos y validaciones para mejorar la consistencia operativa del equipo.</p>
+            <h3>Acceso rapido</h3>
+            <p>Encontrar clinicas afiliadas cercanas por distrito, provincia o especialidad.</p>
           </article>
           <article class="objective-card" style="--accent: var(--blue);">
             <div class="card-topline"></div>
-            <h3>Mejorar visibilidad</h3>
-            <p>Presentar datos relevantes en vistas organizadas para seguimiento, control y analisis.</p>
+            <h3>Beneficios corporativos</h3>
+            <p>Ofrecer convenios y ventajas exclusivas para trabajadores y familias.</p>
           </article>
           <article class="objective-card" style="--accent: var(--coral);">
             <div class="card-topline"></div>
-            <h3>Reducir tiempos</h3>
-            <p>Automatizar acciones repetitivas y simplificar flujos para acelerar la ejecucion diaria.</p>
+            <h3>Expansion comercial</h3>
+            <p>Conectar nuevas clinicas y empresas dentro de una misma red.</p>
           </article>
         </div>
 
         <div class="metric-row">
-          <div class="metric" style="--accent: var(--teal);"><strong>+Control</strong><span>Sobre el flujo completo</span></div>
-          <div class="metric" style="--accent: var(--blue);"><strong>+Datos</strong><span>Para mejores decisiones</span></div>
-          <div class="metric" style="--accent: var(--coral);"><strong>-Errores</strong><span>Por validaciones claras</span></div>
-          <div class="metric" style="--accent: var(--gold);"><strong>+Valor</strong><span>Para usuarios finales</span></div>
+          <div class="metric" style="--accent: var(--teal);"><strong>50+</strong><span>Empresas afiliadas</span></div>
+          <div class="metric" style="--accent: var(--blue);"><strong>120+</strong><span>Clinicas asociadas</span></div>
+          <div class="metric" style="--accent: var(--coral);"><strong>15+</strong><span>Provincias cubiertas</span></div>
+          <div class="metric" style="--accent: var(--gold);"><strong>10000+</strong><span>Usuarios beneficiados</span></div>
         </div>
       </section>
 
       <section class="slide" id="alcance">
-        <div class="eyebrow">02 · Alcance del proyecto</div>
-        <h2 class="slide-title">Un alcance definido para avanzar con foco y evitar desviaciones.</h2>
+        <div class="eyebrow">02 · Alcance</div>
+        <h2 class="slide-title">Que incluye la primera version</h2>
         <p class="lead-text">
-          La primera version concentra los componentes esenciales del flujo, priorizando trazabilidad,
-          operacion diaria y una base escalable para futuras mejoras.
+          El MVP prioriza un directorio confiable, busqueda simple y una experiencia comercial clara
+          para validar la red con empresas y partners medicos.
         </p>
 
         <div class="scope-layout">
           <div class="scope-panel">
             <h3>Incluye</h3>
             <ul class="check-list">
-              <li><span class="check-icon">✓</span><span>Levantamiento y organizacion de requerimientos principales.</span></li>
-              <li><span class="check-icon">✓</span><span>Diseno de pantallas o modulos necesarios para el flujo base.</span></li>
-              <li><span class="check-icon">✓</span><span>Registro, consulta y actualizacion de informacion clave.</span></li>
-              <li><span class="check-icon">✓</span><span>Validaciones, estados y reportes iniciales de seguimiento.</span></li>
+              <li><span class="check-icon"><i class="bi bi-check-lg"></i></span><span>Directorio de clinicas afiliadas.</span></li>
+              <li><span class="check-icon"><i class="bi bi-check-lg"></i></span><span>Busqueda por ubicacion.</span></li>
+              <li><span class="check-icon"><i class="bi bi-check-lg"></i></span><span>Clasificacion por especialidad.</span></li>
+              <li><span class="check-icon"><i class="bi bi-check-lg"></i></span><span>Registro de empresas asociadas.</span></li>
+              <li><span class="check-icon"><i class="bi bi-check-lg"></i></span><span>Informacion detallada de beneficios.</span></li>
+              <li><span class="check-icon"><i class="bi bi-check-lg"></i></span><span>Pagina de contacto y afiliacion.</span></li>
             </ul>
           </div>
 
           <div class="scope-panel">
-            <h3>Fases sugeridas</h3>
+            <h3>Ruta de implementacion</h3>
             <div class="timeline">
               <div class="timeline-item" style="--accent: var(--teal);">
                 <span>Fase 1</span>
-                <p>Definicion funcional, reglas del negocio y priorizacion del MVP.</p>
+                <p>Diseno del MVP y validacion.</p>
               </div>
               <div class="timeline-item" style="--accent: var(--blue);">
                 <span>Fase 2</span>
-                <p>Desarrollo de modulos principales, integracion de datos y pruebas internas.</p>
+                <p>Directorio y sistema de busqueda.</p>
               </div>
               <div class="timeline-item" style="--accent: var(--coral);">
                 <span>Fase 3</span>
-                <p>Validacion con usuarios, ajustes finales y preparacion para despliegue.</p>
+                <p>Empresas afiliadas y beneficios.</p>
+              </div>
+              <div class="timeline-item" style="--accent: var(--gold);">
+                <span>Fase 4</span>
+                <p>Escalabilidad nacional.</p>
               </div>
             </div>
           </div>
@@ -533,59 +669,133 @@
 
       <section class="slide" id="funcionalidades">
         <div class="eyebrow">03 · Funcionalidades</div>
-        <h2 class="slide-title">Herramientas concretas para operar, controlar y evolucionar.</h2>
+        <h2 class="slide-title">Una plataforma pensada para descubrir, comparar y afiliar</h2>
         <p class="lead-text">
-          Las funcionalidades propuestas cubren el ciclo principal del usuario: ingreso de informacion,
-          gestion del estado, consulta de resultados y soporte para decisiones.
+          La experiencia conecta demanda corporativa con oferta medica, manteniendo informacion
+          ordenada para usuarios, empresas y clinicas asociadas.
         </p>
 
         <div class="feature-grid">
           <article class="feature-card" style="--accent: var(--teal);">
-            <div class="feature-icon">01</div>
+            <div class="feature-icon"><i class="bi bi-geo-alt"></i></div>
             <div>
-              <h3>Gestion de registros</h3>
-              <p>Crear, editar, consultar y mantener informacion centralizada con campos controlados.</p>
+              <h3>Buscar por ubicacion</h3>
+              <p>Encontrar clinicas por distrito, ciudad o provincia.</p>
             </div>
           </article>
           <article class="feature-card" style="--accent: var(--blue);">
-            <div class="feature-icon">02</div>
+            <div class="feature-icon"><i class="bi bi-hospital"></i></div>
             <div>
-              <h3>Panel de seguimiento</h3>
-              <p>Visualizar estados, pendientes, alertas y avance general mediante indicadores claros.</p>
+              <h3>Clinicas afiliadas</h3>
+              <p>Visualizar aliados medicos disponibles.</p>
             </div>
           </article>
           <article class="feature-card" style="--accent: var(--gold);">
-            <div class="feature-icon">03</div>
+            <div class="feature-icon"><i class="bi bi-buildings"></i></div>
             <div>
-              <h3>Reportes operativos</h3>
-              <p>Generar resumenes filtrables para revisar rendimiento, volumen y puntos de atencion.</p>
+              <h3>Empresas asociadas</h3>
+              <p>Mostrar empresas que forman parte del ecosistema.</p>
             </div>
           </article>
           <article class="feature-card" style="--accent: var(--coral);">
-            <div class="feature-icon">04</div>
+            <div class="feature-icon"><i class="bi bi-percent"></i></div>
             <div>
-              <h3>Roles y permisos</h3>
-              <p>Controlar accesos segun perfil, responsabilidad y nivel de autorizacion requerido.</p>
+              <h3>Beneficios corporativos</h3>
+              <p>Consultar descuentos y ventajas disponibles.</p>
             </div>
           </article>
           <article class="feature-card" style="--accent: var(--green);">
-            <div class="feature-icon">05</div>
+            <div class="feature-icon"><i class="bi bi-card-checklist"></i></div>
             <div>
-              <h3>Validaciones automaticas</h3>
-              <p>Reducir inconsistencias mediante reglas antes de guardar, aprobar o cerrar procesos.</p>
+              <h3>Detalle de clinicas</h3>
+              <p>Ver direccion, especialidades y servicios.</p>
             </div>
           </article>
           <article class="feature-card" style="--accent: var(--blue);">
-            <div class="feature-icon">06</div>
+            <div class="feature-icon"><i class="bi bi-pencil-square"></i></div>
             <div>
-              <h3>Historial y trazabilidad</h3>
-              <p>Registrar cambios importantes para auditoria, seguimiento y mejora continua.</p>
+              <h3>Formulario de afiliacion</h3>
+              <p>Permitir registro de nuevas clinicas y empresas.</p>
             </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide" id="empresas">
+        <div class="eyebrow">04 · Traccion comercial</div>
+        <h2 class="slide-title">Empresas que confian en nosotros</h2>
+        <p class="lead-text">
+          Logos simulados para representar el tipo de clientes corporativos que podrian activar
+          la red como beneficio para sus colaboradores.
+        </p>
+
+        <div class="company-grid">
+          <article class="company-logo" style="--accent: var(--teal);">
+            <div class="logo-mark">G</div>
+            <strong>Gloria</strong>
+            <span>Consumo masivo</span>
+          </article>
+          <article class="company-logo" style="--accent: var(--blue);">
+            <div class="logo-mark">AA</div>
+            <strong>Aceros Arequipa</strong>
+            <span>Industria</span>
+          </article>
+          <article class="company-logo" style="--accent: var(--coral);">
+            <div class="logo-mark">IB</div>
+            <strong>Interbank</strong>
+            <span>Servicios financieros</span>
+          </article>
+          <article class="company-logo" style="--accent: var(--gold);">
+            <div class="logo-mark">A</div>
+            <strong>Alicorp</strong>
+            <span>Corporativo</span>
+          </article>
+          <article class="company-logo" style="--accent: var(--green);">
+            <div class="logo-mark">B</div>
+            <strong>Backus</strong>
+            <span>Beneficios laborales</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide" id="experiencia">
+        <div class="eyebrow">05 · Experiencia del usuario</div>
+        <h2 class="slide-title">Un flujo simple desde el beneficio hasta la atencion medica</h2>
+        <p class="lead-text">
+          La propuesta reduce friccion: el colaborador identifica la clinica correcta, revisa su
+          beneficio corporativo y avanza hacia una atencion medica con mayor claridad.
+        </p>
+
+        <div class="flow-strip">
+          <article class="flow-step" style="--accent: var(--teal);">
+            <div class="flow-number">1</div>
+            <h3>Empresa afiliada</h3>
+            <p>Activa convenios de salud para su equipo.</p>
+          </article>
+          <article class="flow-step" style="--accent: var(--blue);">
+            <div class="flow-number">2</div>
+            <h3>Colaborador</h3>
+            <p>Ingresa a la plataforma con acceso corporativo.</p>
+          </article>
+          <article class="flow-step" style="--accent: var(--coral);">
+            <div class="flow-number">3</div>
+            <h3>Busca clinica</h3>
+            <p>Filtra por ubicacion, provincia o especialidad.</p>
+          </article>
+          <article class="flow-step" style="--accent: var(--gold);">
+            <div class="flow-number">4</div>
+            <h3>Selecciona beneficio</h3>
+            <p>Compara descuentos, cobertura y condiciones.</p>
+          </article>
+          <article class="flow-step" style="--accent: var(--green);">
+            <div class="flow-number">5</div>
+            <h3>Atencion medica</h3>
+            <p>Contacta al partner y utiliza el convenio disponible.</p>
           </article>
         </div>
 
         <p class="footer-note">
-          Presentacion tecnica desarrollada por Jerry Aguilar para comunicar los objetivos y alcance del proyecto.
+          Presentacion comercial desarrollada por Jerry Aguilar para Red de Salud Corporativa.
         </p>
       </section>
     </main>
@@ -611,6 +821,7 @@
     };
 
     window.addEventListener("scroll", activateLink);
+    activateLink();
   </script>
 </body>
 </html>
